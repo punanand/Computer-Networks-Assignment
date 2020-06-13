@@ -15,6 +15,8 @@ that case, the server has to buffer the packets temporarily to finally construct
 ### Selective Repeat over UDP
 [Insert the topology image here] 
 
+![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+
 C uploads input.txt to S. All odd-numbered packets go through the relay node R1, while all even-
 numbered packets go through the relay node R2. R1 and R2 add a delay, which is a random number
 
