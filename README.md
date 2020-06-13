@@ -1,5 +1,7 @@
 # Computer-Networks-Assignment
 
+The project consists of two protocols `Multi-channel stop-and-wait` and `Selective Repeat over UDP` implemented in C. Both the protocols have been described below. The source code for both the projects and their detailed readme can be found in 
+[Multi-channel-stop-and-wait](https://github.com/punanand/Computer-Networks-Assignment/tree/master/Multi-channel-stop-and-wait) and [Selective-repeat](https://github.com/punanand/Computer-Networks-Assignment/tree/master/Selective-repeat) folders respectively. The detailed problem statement can be found [here](https://github.com/punanand/Computer-Networks-Assignment/blob/master/Problem-statement.pdf).
 ### Multi-channel stop-and-wait protocol without DATA or ACK losses.
 
 1. The sender transmits packets through two different channels (TCP connections).
