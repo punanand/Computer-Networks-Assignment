@@ -76,8 +76,8 @@ The modification in the specifications can be done in the file `packet.h`.
 	  4. window_packets: stores the packets corresponding to the index in the window.
 	(NOTE: This will help us resend the packet in case it is dropped by the delay, without creating it again)
 2. Open 2 sockets (sock_odd and sock_even) and instantiated the sockaddr_in structures for Relay1 and Relay2.
-3. Initially send the window size number of packets to the respective relay (depending on odd or even multiple of PACKET_SIZE), if there is enough data, otherwise send the packets that cover all the data, and populate the window arrays appropriately.
-4. Calculate the time lapse between the current system time and the send time of the packet corresponding to index 0 (first packet of the window), time left to timeout = Retransmission time - calculated time difference.
+3. Initially send the window size number of packets to the respective relay (depending on odd or even multiple of `PACKET_SIZE`), if there is enough data, otherwise send the packets that cover all the data, and populate the window arrays appropriately.
+4. Calculate the time lapse between the current system time and the send time of the packet corresponding to index 0 (first packet of the window), time left to `timeout = Retransmission time - calculated time difference`.
 5. Initiate a fd_set for the 2 sockets created for the relays.
 6. Using select routine, monitor if any acknowledgements are received from any of the relays, or if the timeout occurs.
 7. If acknowledgement received, iterate and check whether ack received for the corresponding packet at index 0, and slide the window and check again, if ack not received, break.
@@ -88,17 +88,17 @@ The modification in the specifications can be done in the file `packet.h`.
 11. After that logs are generated.
 
 #### Relay:
-1. Following arrays of the same size as the window is maintained (Let's collectively call them 'relay arrays'):
+1. Following arrays of the same size as the window is maintained (Let's collectively call them `relay arrays`):
 (NOTE: Since in Selective Repeat protocol the number of un-acked packets can be at most the size of the window, the size of the array can be as that of the window)
-    1. time_left: stores the time left for the packet to be forwarded to the server.
+    1. `time_left`: stores the time left for the packet to be forwarded to the server.
 	(NOTE: Since relay gives a random delay to the packet, it updates the corresponding entry in this array)
-	  2. recieved_packets: stores the packets to be forwarded to the server.
+	  2. `recieved_packets`: stores the packets to be forwarded to the server.
 2. Open a socket and bind to the port number depending on the line argument passed to the executable.
-3. Instantiate the sockaddr_in records for the 2 server ports.
-4. Iterate over the time_left array and find the Packet that is to be forwarded to the server the earliest.
-5. Initialize a fd_set with the opened socket and timeout corresponding to the time calculated in step 4.
-6. Using select monitor any received packets at the socket or check if a timeout happens, also time the select call and update the time_left arrays by subtracting by the estimated time.
-7. If a packet is received, it may be ACK packet or a DATA packet (it may be checked by looking at the tag field of the Packet structure).
+3. Instantiate the `sockaddr_in` records for the 2 server ports.
+4. Iterate over the `time_left` array and find the Packet that is to be forwarded to the server the earliest.
+5. Initialize a `fd_set` with the opened socket and timeout corresponding to the time calculated in step 4.
+6. Using select monitor any received packets at the socket or check if a timeout happens, also time the select call and update the `time_left` arrays by subtracting by the estimated time.
+7. If a packet is received, it may be `ACK` packet or a `DATA` packet (it may be checked by looking at the tag field of the Packet structure).
 8. If a data packet is received from the client, calculate the delay to be assigned and check whether it is to be dropped or not, if it not being dropped, corresponding relay arrays are populated with its entries.
 9. If ack is received from the server, this ack is forwarded to the client without any delay.
 10. If the timeout occurs, it implies that is time for some data packet to be forwarded to the server, the corresponding packet is found out and forwarded to the server.
@@ -107,8 +107,8 @@ _(NOTE: Relay routine goes on independent of the file size, so it will not have 
 
 #### Server:
 1. Open 2 sockets, one for Relay 1, other for Relay 2 and bind them to their corresponding ports.
-2. Initialize an fd_set in each iteration consisting of the 2 sockets.
-3. Using select on the fd_set created, monitor if any data packets are recieved from the client with the timeout structure being NULL.
+2. Initialize an `fd_set` in each iteration consisting of the 2 sockets.
+3. Using select on the `fd_set` created, monitor if any data packets are recieved from the client with the timeout structure being `NULL`.
 4. Receive the packet.
 5. Send an ack with the corresponding sequence number.
 5. Add the payload to the buffer.
@@ -125,4 +125,4 @@ _(NOTE: taking buffer size to be WINDOW_SIZE * PACKET_SIZE, the buffer will alwa
 Logging the events (sorted with respect to timestamp):
 1. Each of the application (client, server, Relay 1, Relay 2) write their logs to a temporary file while their execution.
 2. After the client breaks out of the loop, it reads these files in does online insertion sort on these logs after adding them to a node structure.
-3. Finally, the logs are output on 'logs_sorted.txt'
+3. Finally, the logs are output on `logs_sorted.txt`
