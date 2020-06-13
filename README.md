@@ -21,3 +21,7 @@ numbered packets go through the relay node R2. R1 and R2 add a delay, which is a
 
 distributed uniformly between 0 to 2 ms for a given packet. Acknowledgments can take any route and
 do not suffer from delays or packet drops.
+
+An example scenario to understand the above problem statement is given below:
+
+![alt text](https://github.com/punanand/Computer-Networks-Assignment/blob/master/snaps/q2.jpg)
