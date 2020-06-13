@@ -1,13 +1,13 @@
 
 ### Files:
 
-client.c
-server.c
-packet.h
-readme.txt
-input.txt (File to be uploaded)
-client (executable binary)
-server (executable binary)
+* client.c
+* server.c
+* packet.h
+* readme.txt
+* input.txt (File to be uploaded)
+* client (executable binary)
+* server (executable binary)
 
 ### Execution Commands:
 
