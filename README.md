@@ -19,9 +19,7 @@ that case, the server has to buffer the packets temporarily to finally construct
 ![alt text](https://github.com/punanand/Computer-Networks-Assignment/blob/master/snaps/q1.jpg)
 
 C uploads input.txt to S. All odd-numbered packets go through the relay node R1, while all even-
-numbered packets go through the relay node R2. R1 and R2 add a delay, which is a random number
-
-distributed uniformly between 0 to 2 ms for a given packet. Acknowledgments can take any route and
+numbered packets go through the relay node R2. R1 and R2 add a delay, which is a random number distributed uniformly between 0 to 2 ms for a given packet. Acknowledgments can take any route and
 do not suffer from delays or packet drops.
 
 An example scenario to understand the above problem statement is given below:
